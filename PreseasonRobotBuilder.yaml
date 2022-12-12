@@ -178,21 +178,174 @@ Children:
       Name: Differential Drive 1
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Send to SmartDashboard, validators: null, value: false}
+        name: Send to SmartDashboard, validators: null, value: true}
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
+        default: &id007
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed, type: double,
+          value: '0'}
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: turn, type: double,
+          value: '0'}
         name: Default command parameters
         validators: null
-        value: []
+        value: *id007
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: DriveWithJoystick}
       Constants: !!robotbuilder.data.properties.ConstantsProperty
         default: []
         name: Constants
         validators: null
-        value: []
+        value: &id014 []
     Base: Subsystem
     Name: DriveTrain
+  - Children:
+    - Children: []
+      Properties:
+        Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id008 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          default: '0'
+          name: Forward Module (Solenoid)
+          validators: &id009 [Solenoid]
+          value: '0'
+        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id010 ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Reverse Channel (Solenoid)
+          validators: null
+          value: '3'
+        Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id011 [CTREPCM, REVPH]
+          default: CTREPCM
+          name: Forward Module Type (Solenoid)
+          validators: null
+          value: CTREPCM
+        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id012 ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Forward Channel (Solenoid)
+          validators: &id013 [Solenoid]
+          value: '2'
+      Base: Double Solenoid
+      Name: InnerSolenoid
+    - Children: []
+      Properties:
+        Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: '0'
+          name: Forward Module (Solenoid)
+          validators: *id009
+          value: '0'
+        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '0'
+          name: Reverse Channel (Solenoid)
+          validators: null
+          value: '0'
+        Forward Module Type (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id011
+          default: CTREPCM
+          name: Forward Module Type (Solenoid)
+          validators: null
+          value: CTREPCM
+        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id012
+          default: '0'
+          name: Forward Channel (Solenoid)
+          validators: *id013
+          value: '1'
+      Base: Double Solenoid
+      Name: OuterSolenoid
+    Properties:
+      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Send to SmartDashboard, validators: null, value: true}
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: *id014
+    Base: Subsystem
+    Name: ClimberPheumatics
+  - Children:
+    - Children: []
+      Properties:
+        Idle Mode: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: kCoast
+          name: Idle Mode
+          validators: null
+          value: kBrake
+        Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Inverted, validators: null, value: false}
+        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '2'
+          name: CAN ID
+          validators: *id003
+          value: '0'
+        MOTOR TYPE: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id004
+          default: kBrushless
+          name: MOTOR TYPE
+          validators: null
+          value: kBrushless
+        Restore Factory Defaults: !!robotbuilder.data.properties.BooleanProperty {
+          default: true, name: Restore Factory Defaults, validators: null, value: true}
+      Base: Spark MAX
+      Name: InnerMotor
+    - Children: []
+      Properties:
+        Idle Mode: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: kCoast
+          name: Idle Mode
+          validators: null
+          value: kBrake
+        Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Inverted, validators: null, value: false}
+        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '2'
+          name: CAN ID
+          validators: *id003
+          value: '5'
+        MOTOR TYPE: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id004
+          default: kBrushless
+          name: MOTOR TYPE
+          validators: null
+          value: kBrushless
+        Restore Factory Defaults: !!robotbuilder.data.properties.BooleanProperty {
+          default: true, name: Restore Factory Defaults, validators: null, value: true}
+      Base: Spark MAX
+      Name: OuterMotor
+    Properties:
+      Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Send to SmartDashboard, validators: null, value: true}
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: innersetpoint,
+          type: double, value: '0'}
+        - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: outersetpoint,
+          type: double, value: '0'}
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: ClimberMotorCommand}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: *id014
+    Base: Subsystem
+    Name: ClimberMotor
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -207,6 +360,167 @@ Children:
         value: '0'
     Base: Xbox Controller
     Name: Xbox Controller 1
+  - Children:
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: ClimberStick}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: extend,
+            type: boolean, value: 'true'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id015 ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+            '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23',
+            '24', '25', '26', '27', '28', '29', '30', '31', '32']
+          default: '1'
+          name: Button
+          validators: null
+          value: '1'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: &id016 [TypeDropdownSelected]
+          value: ClimberInner
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id017 [whenPressed, whenReleased, whileHeld, whenHeld, toggleWhenPressed,
+            cancelWhenPressed]
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: Joystick Button 1
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: ClimberStick}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: extend,
+            type: boolean, value: 'false'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id015
+          default: '1'
+          name: Button
+          validators: null
+          value: '2'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id016
+          value: ClimberInner
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id017
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: Joystick Button 2
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: ClimberStick}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: extend,
+            type: boolean, value: 'true'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id015
+          default: '1'
+          name: Button
+          validators: null
+          value: '3'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id016
+          value: ClimberOuter
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id017
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: Joystick Button 3
+    - Children: []
+      Properties:
+        Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Interruptible, validators: null, value: true}
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: ClimberStick}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value:
+          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: extend,
+            type: boolean, value: 'false'}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id015
+          default: '1'
+          name: Button
+          validators: null
+          value: '4'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id016
+          value: ClimberOuter
+        Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
+          name: Timeout, validators: null, value: 0.0}
+        Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Add Timeout, validators: null, value: false}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id017
+          default: whenPressed
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: Joystick Button 4
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: ['0', '1', '2', '3', '4', '5']
+        default: 1
+        name: Number
+        validators: [Joystick]
+        value: '1'
+    Base: Joystick
+    Name: ClimberStick
   Properties: {}
   Base: OI
   Name: Operator Interface
@@ -225,10 +539,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id007 []
+        default: &id018 []
         name: Parameter presets
         validators: null
-        value: *id007
+        value: *id018
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -249,7 +563,7 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: DriveTrain}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id008
+        default: &id019
         - !!robotbuilder.data.properties.ParameterSet
           name: Default
           parameters:
@@ -257,11 +571,104 @@ Children:
           - {name: turn, type: double, value: '0'}
         name: Parameter presets
         validators: null
-        value: *id008
+        value: *id019
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: DriveWithJoystick
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: extend, type: boolean}
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: ClimberPheumatics}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id020
+        - !!robotbuilder.data.properties.ParameterSet
+          name: extend
+          parameters:
+          - {name: extend, type: boolean, value: 'true'}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: retract
+          parameters:
+          - {name: extend, type: boolean, value: 'false'}
+        name: Parameter presets
+        validators: null
+        value: *id020
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Instant Command
+    Name: ClimberInner
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: extend, type: boolean}
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: ClimberPheumatics}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id021
+        - !!robotbuilder.data.properties.ParameterSet
+          name: extend
+          parameters:
+          - {name: extend, type: boolean, value: 'true'}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: retract
+          parameters:
+          - {name: extend, type: boolean, value: 'false'}
+        name: Parameter presets
+        validators: null
+        value: *id021
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Instant Command
+    Name: ClimberOuter
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: innersetpoint,
+          type: double}
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: outersetpoint,
+          type: double}
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: ClimberMotor}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id022
+        - !!robotbuilder.data.properties.ParameterSet
+          name: default
+          parameters:
+          - {name: innersetpoint, type: double, value: '0'}
+          - {name: outersetpoint, type: double, value: '0'}
+        name: Parameter presets
+        validators: null
+        value: *id022
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: ClimberMotorCommand
   Properties: {}
   Base: Commands
   Name: Commands
