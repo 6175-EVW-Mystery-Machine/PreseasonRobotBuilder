@@ -55,7 +55,7 @@ private DifferentialDrive differentialDrive1;
 left1 = new CANSparkMax(1, MotorType.kBrushless);
  
  left1.restoreFactoryDefaults();  
-left1.setInverted(false);
+left1.setInverted(true);
 left1.setIdleMode(IdleMode.kCoast);
 left1.burnFlash();
   
@@ -63,7 +63,7 @@ left1.burnFlash();
 left2 = new CANSparkMax(2, MotorType.kBrushless);
  
  left2.restoreFactoryDefaults();  
-left2.setInverted(false);
+left2.setInverted(true);
 left2.setIdleMode(IdleMode.kCoast);
 left2.burnFlash();
   
@@ -75,7 +75,7 @@ leftMotorGroup = new MotorControllerGroup(left1, left2  );
 right1 = new CANSparkMax(4, MotorType.kBrushless);
  
  right1.restoreFactoryDefaults();  
-right1.setInverted(true);
+right1.setInverted(false);
 right1.setIdleMode(IdleMode.kCoast);
 right1.burnFlash();
   
@@ -83,7 +83,7 @@ right1.burnFlash();
 right2 = new CANSparkMax(3, MotorType.kBrushless);
  
  right2.restoreFactoryDefaults();  
-right2.setInverted(true);
+right2.setInverted(false);
 right2.setIdleMode(IdleMode.kCoast);
 right2.burnFlash();
   
